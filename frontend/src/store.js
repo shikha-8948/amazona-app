@@ -26,6 +26,7 @@ const initialState = {
       ? JSON.parse(localStorage.getItem("shippingAddress"))
       : {},
   },
+  paymentMethod: "PayPal",
 };
 
 const reducer = combineReducers({
