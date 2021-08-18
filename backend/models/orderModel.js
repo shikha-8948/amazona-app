@@ -1,4 +1,3 @@
-// import { Timestamp } from "bson";
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
@@ -11,7 +10,7 @@ const orderSchema = new mongoose.Schema(
         price: { type: Number, required: true },
         product: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "product",
+          ref: "Product",
           required: true,
         },
       },
@@ -32,9 +31,11 @@ const orderSchema = new mongoose.Schema(
     isPaid: { type: Boolean, default: false },
     paidAt: { type: Date },
     isDelivered: { type: Boolean, default: false },
-    deliverdAt: { type: Date },
+    deliveredAt: { type: Date },
   },
-  { Timestamp: true }
+  {
+    timestamps: true,
+  }
 );
 const Order = mongoose.model("Order", orderSchema);
 export default Order;

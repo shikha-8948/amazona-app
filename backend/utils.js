@@ -16,7 +16,7 @@ export const generateToken = (user) => {
 export const isAuth = (req, res, next) => {
   const authorization = req.headers.authorization;
   if (authorization) {
-    const token = authorization.slice(7, authorization.length); // Bearer XXXXX
+    const token = authorization.slice(7, authorization.length); // Bearer XXXXXX
     jwt.verify(
       token,
       process.env.JWT_SECRET || "somethingsecret",
@@ -24,7 +24,7 @@ export const isAuth = (req, res, next) => {
         if (err) {
           res.status(401).send({ message: "Invalid Token" });
         } else {
-          res.user = decode;
+          req.user = decode;
           next();
         }
       }
